@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import './App.css';
-import { getUrls } from '../../apiCalls';
+import apiCall from '../../apiCalls';
 import UrlContainer from '../UrlContainer/UrlContainer';
 import UrlForm from '../UrlForm/UrlForm';
 
-export class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      urls: []
-    }
-  }
+const App = () => {
+const [linkData, setLinkData] = useState([])
 
-  componentDidMount() {
-  }
+useEffect(() => getData(), [])
 
-  render() {
+const getData = () => {
+  apiCall.getData('http://localhost:3001/api/v1/urls')
+    .then(data => setLinkData(data.urls))
+}
+
     return (
       <main className="App">
         <header>
@@ -23,10 +21,10 @@ export class App extends Component {
           <UrlForm />
         </header>
 
-        <UrlContainer urls={this.state.urls}/>
+        <UrlContainer urls={linkData}/>
       </main>
     );
   }
-}
+
 
 export default App;
