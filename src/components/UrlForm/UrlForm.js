@@ -30,6 +30,7 @@ const UrlForm = ({ sendData }) => {
     return (
       <form>
         <input
+          className='title-input'
           type='text'
           placeholder='Title...'
           name='title'
@@ -38,6 +39,7 @@ const UrlForm = ({ sendData }) => {
         />
 
         <input
+          className='url-input'
           type='text'
           placeholder='URL to Shorten...'
           name='title'
@@ -45,7 +47,7 @@ const UrlForm = ({ sendData }) => {
           onChange={e => handleUrlChange(e)}
         />
 
-        <button onClick={e => submitUrlData(e)}>
+        <button className='submit-button' onClick={e => submitUrlData(e)}>
           Shorten Please!
         </button>
       </form>
